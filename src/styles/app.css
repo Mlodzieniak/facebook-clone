@@ -2,6 +2,19 @@
     margin: 0;
     padding: 0;
     text-decoration: none;
-    font-family: 'Castoro Titling', cursive;
     /* font-family: 'Roboto', sans-serif; */
+    font-family: 'Castoro Titling', cursive;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+}
+
+:root {
+    --beige: #FFFCF9;
+    --dark-beige: #f1f1f1;
+    --green: #378b45;
+    --orange: #fbb042;
+    --dark-green: #1b4321;
+    --medium-green: #296733;
 }
