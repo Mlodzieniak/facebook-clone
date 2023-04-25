@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@mui/material";
 import "../styles/login.css";
 
 function Login() {
@@ -11,9 +12,13 @@ function Login() {
       <div className="login-wrapper">
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
-        <button type="button" className="login-password-btn">Log In</button>
+        {/* <button type="button" className="login-password-btn">Log In</button> */}
+        <Button variant="contained">Log In</Button>
+
         <span />
-        <button type="button" className="login-google-btn">Sign in with Google</button>
+        {/* <button type="button" className="login-google-btn">Sign in with Google</button> */}
+        <Button variant="contained" color="secondary">Sign in with Google</Button>
+
       </div>
 
     </div>

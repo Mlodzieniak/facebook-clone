@@ -12,7 +12,8 @@ p {
 
 :root {
     --beige: #FFFCF9;
-    --dark-beige: #f1f1f1;
+    /* --dark-beige: #f1f1f1; */
+    --white: #fff;
     --green: #378b45;
     --orange: #fbb042;
     --dark-green: #1b4321;

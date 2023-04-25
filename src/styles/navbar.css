@@ -1,0 +1,96 @@
+.navbar {
+    background-color: var(--white);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    box-shadow: 0px 2px 7px 1px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.nav-logo {
+    background-color: var(--green);
+    color: var(--white);
+    font-size: 60px;
+    font-weight: 1000;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+
+.nav-logo-letter {
+    transform: translateX(4px) translateY(8px);
+    user-select: none;
+}
+
+.logo-search {
+    display: flex;
+    gap: 1rem;
+}
+
+
+.search-container {
+    display: inline-block;
+    position: relative;
+}
+
+.search-input {
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    border: none;
+    padding: 10px;
+    background: #f2f2f2;
+    transition: width 0.3s ease-in-out;
+    font-size: 24px;
+}
+
+.search-input:focus {
+    width: 300px;
+    border-radius: 10px;
+    background: white;
+    outline: none;
+}
+
+.search-input:hover {
+    width: 300px;
+    cursor: pointer;
+}
+
+.search-input::-webkit-search-decoration,
+.search-input::-webkit-search-cancel-button,
+.search-input::-webkit-search-results-button,
+.search-input::-webkit-search-results-decoration {
+    display: none;
+}
+
+.search-input::-webkit-input-placeholder {
+    color: var(--beige);
+    opacity: 1;
+}
+
+.search-input::-moz-placeholder {
+    color: var(--beige);
+    opacity: 1;
+}
+
+.search-input:-ms-input-placeholder {
+    color: var(--beige);
+    opacity: 1;
+}
+
+.search-input::placeholder {
+    color: var(--beige);
+    opacity: 1;
+}
+
+
+.routes {
+    display: flex;
+    justify-content: space-evenly;
+    width: 40%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
