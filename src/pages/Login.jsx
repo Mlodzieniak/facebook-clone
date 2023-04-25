@@ -12,6 +12,7 @@ function Login() {
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Password" />
         <button type="button" className="login-password-btn">Log In</button>
+        <span />
         <button type="button" className="login-google-btn">Sign in with Google</button>
       </div>
 

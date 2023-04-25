@@ -28,6 +28,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.7rem;
+    align-items: center;
 }
 
 input,
@@ -38,6 +39,7 @@ button {
 
 input {
     border: solid 1px rgba(0, 0, 0, 0.1);
+    width: 400px;
 }
 
 button {
@@ -49,8 +51,16 @@ button {
 
 .login-password-btn {
     background-color: var(--green);
+    width: 100%;
 }
 
 .login-google-btn {
     background-color: var(--orange);
+    width: min-content;
+    white-space: nowrap;
+}
+
+span {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
 }
