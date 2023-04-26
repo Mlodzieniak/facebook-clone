@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./Auth";
+import PrivateRoute from "./PrivateRoute";
 // import Main from "./.pages/Main";
 // import UserProfile from "./pages/UserProfile";
 
@@ -22,7 +23,14 @@ function App() {
             <Routes>
               <Route path="/login" Component={Login} />
               <Route path="/signup" Component={Signup} />
-              <Route path="/user" Component={UserProfile} />
+              <Route
+                path="/user"
+                element={(
+                  <PrivateRoute>
+                    <UserProfile />
+                  </PrivateRoute>
+)}
+              />
             </Routes>
             {/* <Route path="/user/uid" Component={UserProfile} /> */}
             {/* <UserProfile /> */}
