@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../styles/event.css";
 import { TextField, Button } from "@mui/material";
-// import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import Comment from "./Comment";
 
 function Event() {
@@ -32,7 +31,6 @@ function Event() {
         src="https://energylandia.pl/wp-content/uploads/2017/04/co-to-jest-event-firmowy-scaled.jpg"
         alt=""
       />
-      {/* <Button><ThumbUpIcon /></Button> */}
       <span className="divider" />
 
       <div className="data-wrapper">
@@ -48,7 +46,6 @@ function Event() {
       >
         <Button>Send</Button>
       </TextField>
-      {/* <TextareaAutosize /> */}
       <Button onClick={handleSendClick} variant="contained" color="primary">
         Send
       </Button>
