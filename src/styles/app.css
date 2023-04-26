@@ -18,4 +18,11 @@ p {
     --orange: #fbb042;
     --dark-green: #1b4321;
     --medium-green: #296733;
+    --profile-picture-size: 300px;
+    --event-image-size: 500px;
+}
+
+.divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    width: 100%;
 }

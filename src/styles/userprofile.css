@@ -1,0 +1,44 @@
+.user-profile-page {
+    background-color: var(--beige);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.content {
+    display: flex;
+    gap: 8rem;
+    padding: 1rem 6rem;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.user-data {
+    background-color: var(--white);
+    border-radius: 0.3rem;
+    box-shadow: 0 2px 7px 1px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: var(--profile-picture-size);
+}
+
+.data-wrapper {
+    padding: 1rem;
+}
+
+.profile-picture {
+    width: var(--profile-picture-size);
+    height: var(--profile-picture-size);
+    object-fit: cover;
+}
+
+.name {
+    font-weight: 700;
+    color: var(--green);
+    font-size: 24px;
+}
