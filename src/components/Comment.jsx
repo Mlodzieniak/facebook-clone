@@ -5,10 +5,13 @@ function Comment() {
   return (
     <div className="comment">
       <Avatar>D</Avatar>
-      <div className="author">Author</div>
-      <p className="text">
-        Lorem ipsCommentum, dolor sit amet consectetur adipisicing elit. Voluptates quos
-      </p>
+      <div className="comment-data">
+        <div className="author">Author</div>
+        <p className="text">
+          Lorem ipsCommentum, dolor sit amet consectetur adipisicing elit.
+          Voluptates quos
+        </p>
+      </div>
     </div>
   );
 }

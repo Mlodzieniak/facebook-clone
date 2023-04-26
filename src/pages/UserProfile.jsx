@@ -12,7 +12,11 @@ function UserProfile() {
           <div className="data-wrapper">
             <div className="name">John Smith</div>
           </div>
-          <img className="profile-picture" src="https://live.staticflickr.com/5487/12135275084_60429daea6_b.jpg" alt="" />
+          <img
+            className="profile-picture"
+            src="https://live.staticflickr.com/5487/12135275084_60429daea6_b.jpg"
+            alt=""
+          />
           <div className="data-wrapper">
             <div className="join-date">01.01.2015</div>
             <div className="age">22</div>

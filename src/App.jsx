@@ -4,7 +4,7 @@ import { ThemeProvider } from "@mui/material";
 import theme from "./themes/theme";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import { auth, storage, db } from "../firebase";
-import Login from "./pages/Login";
+// import Login from "./pages/Login";
 // import Main from "./.pages/Main";
 import UserProfile from "./pages/UserProfile";
 
@@ -14,7 +14,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <div className="App">
         <UserProfile />
-        <Login />
+        {/* <Login /> */}
       </div>
     </ThemeProvider>
   );

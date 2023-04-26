@@ -1,3 +1,33 @@
+// {
+//     "env": {
+//         "browser": true,
+//         "es2021": true
+//     },
+//     "extends": [
+//         "plugin:react/recommended",
+//         "airbnb",
+//         "prettier"
+//     ],
+//     "overrides": [],
+//     "parserOptions": {
+//         "ecmaVersion": "latest",
+//         "sourceType": "module"
+//     },
+//     "plugins": [
+//         "react",
+//         "prettier"
+//     ],
+//     "rules": {
+//         "quotes": [
+//             "error",
+//             "double"
+//         ],
+//         "semi": [
+//             "true"
+//         ],
+//         "import/no-extraneous-dependencies": "off"
+//     }
+// }
 {
     "env": {
         "browser": true,
@@ -7,28 +37,41 @@
         "plugin:react/recommended",
         "airbnb"
     ],
-    "overrides": [],
     "parserOptions": {
-        "ecmaVersion": "latest",
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12,
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+        // "prettier/prettier": "error",
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ],
+        "react/jsx-indent": [
+            "error",
+            2
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            2
+        ],
         "quotes": [
             "error",
             "double"
         ],
-        "semi": [
-            "error"
-        ],
-        // "import/no-extraneous-dependencies": [
-        //     "error",
-        //     {
-        //         "devDependencies": false
-        //     }
-        // ]
+        // "object-curly-newline": "off",
         "import/no-extraneous-dependencies": "off"
     }
 }
