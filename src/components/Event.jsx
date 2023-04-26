@@ -42,7 +42,6 @@ function Event() {
         onChange={handleCommentChange}
         aria-label="comment"
         placeholder="Write a comment..."
-        rowsMin={3}
       >
         <Button>Send</Button>
       </TextField>

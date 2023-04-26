@@ -1,8 +1,9 @@
 import React from "react";
 import "../styles/navbar.css";
 import {
-  Box, Tabs, Tab, Avatar,
+  Box, Tabs, Tab, Avatar, Button,
 } from "@mui/material";
+import { auth } from "../firebase";
 
 function NavBar() {
   const [value, setValue] = React.useState(0);
@@ -36,6 +37,7 @@ function NavBar() {
         </div>
         <div className="my-profile">
           <Avatar src="https://live.staticflickr.com/5487/12135275084_60429daea6_b.jpg" />
+          <Button onClick={() => auth.signOut()}>Sign out</Button>
         </div>
       </div>
     </div>

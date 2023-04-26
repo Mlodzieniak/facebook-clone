@@ -101,3 +101,8 @@
     left: 50%;
     transform: translateX(-50%);
 }
+
+.my-profile {
+    display: flex;
+    gap: 1rem;
+}
