@@ -39,7 +39,7 @@ function Signup() {
         <div className="logo">Greenbook</div>
         <div className="motto">Connect with friends and world around you on Greenbook.</div>
       </div>
-      <div className="signup-interface">
+      <div className="interface">
         <div className="login-wrapper">
           <div>Create new account</div>
           <input value={email} onChange={(event) => onChange(event, setEmail)} type="text" placeholder="Email" />
