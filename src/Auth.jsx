@@ -7,8 +7,15 @@ export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
+  const monitorAuthState = async () => {
+    try {
+      onAuthStateChanged(auth, (user) => setCurrentUser(user));
+    } catch (error) {
+      console(error);
+    }
+  };
   useEffect(() => {
-    onAuthStateChanged(auth, setCurrentUser);
+    monitorAuthState();
   }, []);
   return (
     <AuthContext.Provider value={currentUser}>

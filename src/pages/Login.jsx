@@ -31,6 +31,19 @@ function Login() {
       handleError(error);
     }
   };
+  // const monitorAuthState = ascync()=>{
+  //   try{
+  //     onAuthStateChanged(auth, user=>{
+  //       if(user){
+
+  //       }else{
+
+  //       }
+  //     })
+  //   }catch(error){
+  //     console.log(error)
+  //   }
+  // }
   return (
     <div className="login-page">
       <div className="logo-wrapper">
