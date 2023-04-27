@@ -6,6 +6,7 @@ import theme from "./themes/theme";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
+import EditUserProfile from "./pages/EditUserProfile";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
 import Main from "./pages/Main";
@@ -32,6 +33,14 @@ function App() {
                 element={(
                   <PrivateRoute>
                     <UserProfile />
+                  </PrivateRoute>
+)}
+              />
+              <Route
+                path="/edit-profile"
+                element={(
+                  <PrivateRoute>
+                    <EditUserProfile />
                   </PrivateRoute>
 )}
               />

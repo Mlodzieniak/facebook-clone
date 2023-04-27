@@ -3,11 +3,12 @@ import "../styles/navbar.css";
 import {
   Box, Tabs, Tab, Avatar, Button,
 } from "@mui/material";
-import { redirect } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
 function NavBar() {
   const [value, setValue] = React.useState(0);
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -31,13 +32,9 @@ function NavBar() {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Home" onClick={() => redirect("/")}>
-                {/* <Navigate to="/" /> */}
-              </Tab>
-              <Tab label="Friends" />
-              <Tab label="My Profile" onClick={() => redirect("/myaccount")}>
-                {/* <Navigate to="/myaccount" /> */}
-              </Tab>
+              <Tab label="Home" onClick={() => navigate("/")} />
+              <Tab label="Friends" disabled />
+              <Tab label="My Profile" onClick={() => navigate("/myaccount")} />
             </Tabs>
           </Box>
         </div>
