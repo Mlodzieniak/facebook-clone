@@ -2,7 +2,9 @@ import React, { useState, useContext } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Button, Alert, Divider } from "@mui/material";
 import "../styles/login.css";
-import { AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
+import {
+  AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider,
+} from "firebase/auth";
 import { auth } from "../firebase";
 import { AuthContext } from "../Auth";
 
@@ -35,6 +37,15 @@ function Login() {
       handleError(error);
     }
   };
+  const signInWithGoogle = async () => {
+    try {
+      const provider = new GoogleAuthProvider();
+      const credentials = await signInWithPopup(auth, provider);
+      console.log(credentials);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     currentUser ? (<Navigate to="/" />) : (
@@ -50,7 +61,7 @@ function Login() {
             <input type="password" placeholder="Password" onChange={(event) => onChange(event, setPassword)} />
             <Button variant="contained" onClick={signIn}>Log In</Button>
             <span className="divider" />
-            <Button variant="contained" color="secondary">Sign in with Google</Button>
+            <Button variant="contained" color="secondary" onClick={signInWithGoogle}>Sign in with Google</Button>
             <Divider>Or</Divider>
             <Button variant="outlined" onClick={() => navigate("/signup")}>Create new account</Button>
           </div>
