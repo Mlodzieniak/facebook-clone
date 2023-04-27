@@ -3,6 +3,7 @@ import "../styles/navbar.css";
 import {
   Box, Tabs, Tab, Avatar, Button,
 } from "@mui/material";
+import { redirect } from "react-router-dom";
 import { auth } from "../firebase";
 
 function NavBar() {
@@ -11,6 +12,7 @@ function NavBar() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   return (
     <div className="navbar">
       <div className="navbar-wrapper">
@@ -29,9 +31,13 @@ function NavBar() {
               onChange={handleChange}
               aria-label="basic tabs example"
             >
-              <Tab label="Home" />
+              <Tab label="Home" onClick={() => redirect("/")}>
+                {/* <Navigate to="/" /> */}
+              </Tab>
               <Tab label="Friends" />
-              <Tab label="Tab Three" />
+              <Tab label="My Profile" onClick={() => redirect("/myaccount")}>
+                {/* <Navigate to="/myaccount" /> */}
+              </Tab>
             </Tabs>
           </Box>
         </div>

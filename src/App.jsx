@@ -3,8 +3,6 @@ import "./styles/app.css";
 import { ThemeProvider } from "@mui/material";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import theme from "./themes/theme";
-// import { useAuthState } from "react-firebase-hooks/auth";
-// import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";

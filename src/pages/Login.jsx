@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { Button, Alert } from "@mui/material";
+import { Navigate, useNavigate } from "react-router-dom";
+import { Button, Alert, Divider } from "@mui/material";
 import "../styles/login.css";
 import { AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
@@ -12,6 +12,7 @@ function Login() {
   const [loginError, setLoginError] = useState(null);
 
   const currentUser = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onChange = (event, cb) => {
     cb(event.target.value);
@@ -44,17 +45,21 @@ function Login() {
         </div>
         <div className="interface">
           <div className="login-wrapper">
+            <div>Log in</div>
             <input type="text" placeholder="Email" onChange={(event) => onChange(event, setEmail)} />
             <input type="password" placeholder="Password" onChange={(event) => onChange(event, setPassword)} />
             <Button variant="contained" onClick={signIn}>Log In</Button>
             <span className="divider" />
             <Button variant="contained" color="secondary">Sign in with Google</Button>
+            <Divider>Or</Divider>
+            <Button variant="outlined" onClick={() => navigate("/signup")}>Create new account</Button>
           </div>
           <div className="error-wrapper">
             <div className="error">
               {loginError ? (<Alert severity="error">{loginError}</Alert>) : null}
             </div>
           </div>
+
         </div>
 
       </div>
