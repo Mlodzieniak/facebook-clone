@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "@mui/material";
+import { Button, Alert } from "@mui/material";
 import "../styles/login.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
@@ -11,28 +11,26 @@ function Signup() {
   const [viableEmail, setViableEmail] = useState(false);
   const [viablePassword, setViablePassword] = useState(false);
 
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+
   const onChange = (event, cb) => {
     cb(event.target.value);
   };
   const submit = () => {
-    if()
-    createUserWithEmailAndPassword(auth, email, password);
-    console.log("done");
+    if (viableEmail && viablePassword) {
+      createUserWithEmailAndPassword(auth, email, password);
+      console.log("done");
+    }
   };
   useEffect(() => {
     const emailRegExp = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-    if (emailRegExp.test(email)) {
-      setViableEmail(true);
-    } else {
-      setViableEmail(false);
-    }
+    setViableEmail(emailRegExp.test(email));
+    setEmailError(!viableEmail && email.length > 2);
   }, [email]);
   useEffect(() => {
-    if (password.length >= 6 && password.length <= 20) {
-      setViablePassword(true);
-    } else {
-      setViablePassword(false);
-    }
+    setViablePassword(password.length >= 6 && password.length <= 20);
+    setPasswordError(!viablePassword && password.length > 2);
   }, [password]);
 
   return (
@@ -41,12 +39,19 @@ function Signup() {
         <div className="logo">Greenbook</div>
         <div className="motto">Connect with friends and world around you on Greenbook.</div>
       </div>
-      <div className="login-wrapper">
-        <div>Create new account</div>
-        <input value={email} onChange={(event) => onChange(event, setEmail)} type="text" placeholder="Email" />
-        <input value={password} onChange={(event) => onChange(event, setPassword)} type="password" placeholder="Password" />
-        <Button variant="contained" onClick={register}>Register</Button>
-
+      <div className="signup-interface">
+        <div className="login-wrapper">
+          <div>Create new account</div>
+          <input value={email} onChange={(event) => onChange(event, setEmail)} type="text" placeholder="Email" />
+          <input value={password} onChange={(event) => onChange(event, setPassword)} type="password" placeholder="Password" />
+          <Button variant="contained" onClick={submit}>Submit</Button>
+        </div>
+        <div className="error-wrapper">
+          <div className="error">
+            {emailError ? (<Alert severity="error">E-mail is not valid.</Alert>) : null}
+            {passwordError ? (<Alert severity="error">Password must be between 6 and 20 characters long.</Alert>) : null}
+          </div>
+        </div>
       </div>
 
     </div>
