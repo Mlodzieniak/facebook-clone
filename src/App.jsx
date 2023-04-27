@@ -10,7 +10,7 @@ import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
 import { AuthProvider } from "./Auth";
 import PrivateRoute from "./PrivateRoute";
-// import Main from "./.pages/Main";
+import Main from "./pages/Main";
 // import UserProfile from "./pages/UserProfile";
 
 function App() {
@@ -21,6 +21,8 @@ function App() {
         <Router>
           <div className="App">
             <Routes>
+              <Route path="/" Component={Main} />
+
               <Route path="/login" Component={Login} />
               <Route path="/signup" Component={Signup} />
               <Route
