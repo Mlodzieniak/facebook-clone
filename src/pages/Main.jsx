@@ -1,11 +1,11 @@
 import React from "react";
-import NavBar from "../components/NavBar";
+// import NavBar from "../components/NavBar";
 
 function Main() {
   return (
     <div className="main-page">
-      <NavBar />
-      HEllo MAIN
+      {/* <NavBar /> */}
+      XDDDD
     </div>
   );
 }

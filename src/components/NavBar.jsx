@@ -3,7 +3,7 @@ import "../styles/navbar.css";
 import {
   Box, Tabs, Tab, Avatar, Button,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
 
 function NavBar() {
@@ -15,33 +15,38 @@ function NavBar() {
   };
 
   return (
-    <div className="navbar">
-      <div className="navbar-wrapper">
-        <div className="logo-search">
-          <div className="nav-logo">
-            <div className="nav-logo-letter">G</div>
+    <div>
+      <div className="navbar">
+        <div className="navbar-wrapper">
+          <div className="logo-search">
+            <div className="nav-logo">
+              <div className="nav-logo-letter">G</div>
+            </div>
+            <div className="search-container">
+              <input className="search-input" type="search" />
+            </div>
           </div>
-          <div className="search-container">
-            <input className="search-input" type="search" />
+          <div className="routes">
+            <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+              <Tabs
+                value={value}
+                onChange={handleChange}
+                aria-label="basic tabs example"
+              >
+                <Tab label="Home" onClick={() => navigate("/")} />
+                <Tab label="Friends" onClick={() => navigate("/friends")} />
+                <Tab label="My Profile" onClick={() => navigate("/myaccount")} />
+              </Tabs>
+            </Box>
+          </div>
+          <div className="my-profile">
+            <Avatar src="https://live.staticflickr.com/5487/12135275084_60429daea6_b.jpg" />
+            <Button onClick={() => auth.signOut()}>Sign out</Button>
           </div>
         </div>
-        <div className="routes">
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
-              <Tab label="Home" onClick={() => navigate("/")} />
-              <Tab label="Friends" disabled />
-              <Tab label="My Profile" onClick={() => navigate("/myaccount")} />
-            </Tabs>
-          </Box>
-        </div>
-        <div className="my-profile">
-          <Avatar src="https://live.staticflickr.com/5487/12135275084_60429daea6_b.jpg" />
-          <Button onClick={() => auth.signOut()}>Sign out</Button>
-        </div>
+      </div>
+      <div className="page-content">
+        <Outlet />
       </div>
     </div>
   );
