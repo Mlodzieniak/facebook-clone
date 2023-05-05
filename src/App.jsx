@@ -6,7 +6,7 @@ import {
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
-import MyProfile from "./pages/MyProfile";
+import MyProfile, { action as editAction } from "./pages/MyProfile";
 import Friends from "./pages/Friends";
 // import EditUserProfile from "./pages/EditUserProfile";
 import PrivateRoute from "./PrivateRoute";
@@ -30,6 +30,7 @@ function App() {
             }, {
               path: "/myprofile",
               element: <MyProfile />,
+              action: editAction,
             }, {
               path: "/friends",
               element: <Friends />,
@@ -42,7 +43,6 @@ function App() {
             },
           ],
         },
-
       ],
     }, {
       path: "/login",

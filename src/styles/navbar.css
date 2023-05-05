@@ -18,7 +18,7 @@
 .nav-logo {
     background-color: var(--green);
     color: var(--white);
-    font-size: 60px;
+    font-size: 30px;
     font-weight: 1000;
     width: 60px;
     height: 60px;
@@ -105,4 +105,13 @@
 .my-profile {
     display: flex;
     gap: 1rem;
+}
+
+.display-name {
+    margin: auto;
+    color: var(--green);
+    font-weight: 700;
+    font-family: 'Castoro Titling', cursive;
+    /* word-wrap: break-word; */
+    font-size: 12px;
 }
