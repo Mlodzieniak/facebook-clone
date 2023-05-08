@@ -1,0 +1,18 @@
+.my-profile-page {
+    padding: 3rem 7rem;
+}
+
+#edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#edit-profile-form label {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    display: flex;
+}

@@ -6,7 +6,8 @@ import {
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import UserProfile from "./pages/UserProfile";
-import MyProfile, { action as editAction } from "./pages/MyProfile";
+import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 import Friends from "./pages/Friends";
 // import EditUserProfile from "./pages/EditUserProfile";
 import PrivateRoute from "./PrivateRoute";
@@ -29,8 +30,10 @@ function App() {
               element: <Main />,
             }, {
               path: "/myprofile",
-              element: <MyProfile />,
-              action: editAction,
+              element: <Profile />,
+            }, {
+              path: "/myprofile/edit",
+              element: <EditProfile />,
             }, {
               path: "/friends",
               element: <Friends />,

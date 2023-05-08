@@ -1,12 +1,10 @@
 import React from "react";
 import "../styles/userprofile.css";
-import NavBar from "../components/NavBar";
 import Event from "../components/Event";
 
 function UserProfile() {
   return (
     <div className="user-profile-page">
-      <NavBar />
       <div className="content">
         <div className="user-data">
           <div className="data-wrapper">
