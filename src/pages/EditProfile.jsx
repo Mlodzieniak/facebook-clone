@@ -3,21 +3,26 @@ import "../styles/editprofile.css";
 import { Form, useNavigate } from "react-router-dom";
 import { Button } from "@mui/material";
 import { updateProfile } from "firebase/auth";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  doc, setDoc, getDoc, Timestamp,
+} from "firebase/firestore";
+import { uuidv4 } from "@firebase/util";
 import { AuthContext } from "../Auth";
 import { db } from "../firebase";
 
 function EditProfile() {
   const currentUser = useContext(AuthContext);
 
-  const { displayName, photoURL } = useContext(AuthContext);
+  // const { displayName, photoURL } = useContext(AuthContext);
   const { uid } = currentUser;
 
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [userData, setUserData] = useState({});
 
-  const { tweeter, aboutMe } = userData;
+  const {
+    tweeter, aboutMe, displayName, photoURL,
+  } = userData;
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -35,11 +40,24 @@ function EditProfile() {
     const docSnap = await getDoc(docRef);
 
     if (docSnap.exists()) {
-      await setUserData(docSnap.data());
+      setUserData(docSnap.data());
     } else {
-      console.log("No such document!");
+      const defaultUserRef = await getDoc(doc(db, "users", "defaultUser"));
+      // console.log(defaultUserRef.data().photoURL);
+      const defaultUserInfo = {
+        displayName: `user${uuidv4().slice(0, 8)}`,
+        photoURL: defaultUserRef.data().photoURL,
+        joinedAt: Timestamp.fromDate(new Date()),
+      };
+      await setDoc(doc(db, "users", uid), defaultUserInfo, { merge: "true" });
     }
   }
+  //  const {
+  //     uid,
+  //     displayName,
+  //     photoURL,
+  //   } = currentUser
+
   useEffect(() => {
     loadUserData();
   }, []);

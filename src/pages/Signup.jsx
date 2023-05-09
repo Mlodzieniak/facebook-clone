@@ -3,7 +3,7 @@ import { Button, Alert, Divider } from "@mui/material";
 import "../styles/login.css";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { Navigate, useNavigate } from "react-router";
-import { uuidv4 } from "@firebase/util";
+// import { uuidv4 } from "@firebase/util";
 import { auth } from "../firebase";
 import { AuthContext } from "../Auth";
 
@@ -23,13 +23,13 @@ function Signup() {
   const onChange = (event, cb) => {
     cb(event.target.value);
   };
-  const defaultUserInfo = {
-    displayName: uuidv4(),
-    photoURL: "https://firebasestorage.googleapis.com/v0/b/bushbook-f858d.appspot.com/o/avatars%2Fleaf.png?alt=media&token=ea1c946b-e975-4bd8-af02-53e6a26f499c",
-  };
-  const submit = () => {
+
+  const submit = async () => {
     if (viableEmail && viablePassword) {
-      createUserWithEmailAndPassword(auth, email, password, defaultUserInfo);
+      const credentials = await createUserWithEmailAndPassword(auth, email, password);
+      console.log(credentials);
+
+      navigate("/myprofile/edit");
     }
   };
   useEffect(() => {
