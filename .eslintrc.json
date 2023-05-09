@@ -71,6 +71,7 @@
             "error",
             "double"
         ],
+        // "react/destructuring-assignment": "never",
         // "object-curly-newline": "off",
         "import/no-extraneous-dependencies": "off"
     }
