@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  getFirestore, doc, setDoc, Timestamp,
+} from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 import { getAnalytics } from "firebase/analytics";
@@ -25,3 +27,7 @@ const analytics = getAnalytics(app);
 export {
   auth, storage, db, analytics,
 };
+
+export async function postEvent(user, eventData) {
+  await setDoc(doc(db, "events", user.uid + Timestamp.fromDate(new Date())), eventData);
+}

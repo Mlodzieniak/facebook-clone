@@ -1,10 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
 // import "../styles/profile.css";
 import "../styles/userprofile.css";
-
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { getDoc, doc } from "firebase/firestore";
+import Event from "../components/Event";
 import { AuthContext } from "../Auth";
 import { db } from "../firebase";
 
@@ -85,7 +85,7 @@ function Profile() {
           </div>
         </div>
         <div className="activity">
-          {/* <Event /> */}
+          <Event />
         </div>
       </div>
 
