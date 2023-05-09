@@ -1,10 +1,20 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import "../styles/event.css";
 import { TextField, Button } from "@mui/material";
+// import { Timestamp } from "firebase/firestore";
 import Comment from "./Comment";
 
-function Event() {
+function Event({ eventData }) {
+  const {
+    text, imageURL, authorId, comments, creationDate,
+  } = eventData;
   const [comment, setComment] = useState("");
+  const date = creationDate.toDate(); // Convert timestamp to Date object
+  const formattedDate = date.toLocaleDateString("en-GB"); // Format date as dd/mm/yyyy
+  const formattedTime = date.toLocaleTimeString("en-US", { hour12: false }); // Format time as 24-hour format
+
+  const formattedTimestamp = `${formattedDate} ${formattedTime}`;
 
   const handleCommentChange = (event) => {
     setComment(event.target.value);
@@ -18,24 +28,26 @@ function Event() {
   return (
     <div className="event">
       <div className="data-wrapper">
-        <div className="author">John Smith announced:</div>
+        <div className="author">
+          {`${authorId} announced at ${formattedTimestamp}:`}
+          {/* announced at
+          <div className="posted-at">{formattedTimestamp}</div>
+          : */}
+        </div>
         <p className="text">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deserunt
-          corrupti est, molestiae deleniti iure tempora et esse, perferendis
-          doloribus minus aperiam? Dolores alias earum rem temporibus, ipsam sed
-          natus totam!
+          {text}
         </p>
       </div>
       <img
         className="event-image"
-        src="https://energylandia.pl/wp-content/uploads/2017/04/co-to-jest-event-firmowy-scaled.jpg"
+        src={imageURL}
         alt=""
       />
       <span className="divider" />
 
       <div className="data-wrapper">
-        <p>Last Comment:</p>
-        <Comment />
+        {comments.length
+          ? <Comment /> : <p>No comments</p>}
       </div>
       <TextField
         value={comment}
