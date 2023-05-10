@@ -26,9 +26,7 @@ function Signup() {
 
   const submit = async () => {
     if (viableEmail && viablePassword) {
-      const credentials = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(credentials);
-
+      await createUserWithEmailAndPassword(auth, email, password);
       navigate("/myprofile/edit");
     }
   };

@@ -1,21 +1,43 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../styles/navbar.css";
 import {
   Box, Tabs, Tab, Avatar, Button,
 } from "@mui/material";
 import { Outlet, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../firebase";
 import { AuthContext } from "../Auth";
 
 function NavBar() {
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = useState(0);
+  const [displayName, setDisplayName] = useState("");
+  const [photoURL, setPhotoUrl] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+  const { uid } = useContext(AuthContext);
 
-  const { photoURL, displayName } = useContext(AuthContext);
+  const userRef = doc(db, `users/${uid}`);
+  onSnapshot(userRef, {
+    next: ((snap) => {
+      const userData = snap.data();
+      setDisplayName(userData.displayName);
+      setPhotoUrl(userData.photoURL);
+      console.log("hello from snapshot");
+    }),
+    error: ((error) => {
+      console.log(`error from snapshot: ${error}`);
+    }),
+  });
+
+  const getUserData = async () => {
+    await getDoc(doc(db, `users/${uid}`));
+  };
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <div>

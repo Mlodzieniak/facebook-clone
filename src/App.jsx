@@ -9,7 +9,6 @@ import UserProfile from "./pages/UserProfile";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
 import Friends from "./pages/Friends";
-// import EditUserProfile from "./pages/EditUserProfile";
 import PrivateRoute from "./PrivateRoute";
 import Main from "./pages/Main";
 import NavBar from "./components/NavBar";
@@ -59,46 +58,5 @@ function App() {
     <RouterProvider router={router} />
   );
 }
-
-// function App() {
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <AuthProvider>
-//         <Router>
-//           <div className="App">
-//             <Routes>
-//               <Route
-//                 path="/"
-//                 element={(
-//                   <PrivateRoute>
-//                     <Main />
-//                   </PrivateRoute>
-// )}
-//               />
-//               <Route path="/login" Component={Login} />
-//               <Route path="/signup" Component={Signup} />
-//               <Route
-//                 path="/myaccount"
-//                 element={(
-//                   <PrivateRoute>
-//                     <UserProfile />
-//                   </PrivateRoute>
-// )}
-//               />
-//               <Route
-//                 path="/edit-profile"
-//                 element={(
-//                   <PrivateRoute>
-//                     <EditUserProfile />
-//                   </PrivateRoute>
-// )}
-//               />
-//             </Routes>
-//           </div>
-//         </Router>
-//       </AuthProvider>
-//     </ThemeProvider>
-//   );
-// }
 
 export default App;

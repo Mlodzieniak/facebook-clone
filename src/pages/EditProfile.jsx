@@ -7,21 +7,20 @@ import {
   doc, setDoc, getDoc, Timestamp,
 } from "firebase/firestore";
 import { uuidv4 } from "@firebase/util";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { AuthContext } from "../Auth";
-import { db } from "../firebase";
+import { db, storage } from "../firebase";
 
 function EditProfile() {
   const currentUser = useContext(AuthContext);
-
-  // const { displayName, photoURL } = useContext(AuthContext);
-  const { uid } = currentUser;
-
-  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [userData, setUserData] = useState({});
-
+  const [file, setFile] = useState(null);
+  const [imageRef, setImageRef] = useState(null);
+  const { uid } = currentUser;
+  const navigate = useNavigate();
   const {
-    tweeter, aboutMe, displayName, photoURL,
+    tweeter, aboutMe, displayName,
   } = userData;
 
   const handleInputChange = (event) => {
@@ -29,38 +28,45 @@ function EditProfile() {
     setFormData({ ...formData, [name]: value });
   };
 
+  // action gathers data from form and sends it to db
   async function action() {
+    if (file) {
+      await uploadBytes(imageRef, file);
+      const url = await getDownloadURL(imageRef);
+      await setFormData({ ...formData, photoURL: url });
+    }
     await updateProfile(currentUser, formData);
-    await setDoc(doc(db, "users", uid), formData, { merge: "true" });
+    await setDoc(doc(db, `users/${uid}`), formData, { merge: true });
     navigate("/myprofile");
   }
 
   async function loadUserData() {
     const docRef = doc(db, "users", uid);
     const docSnap = await getDoc(docRef);
-
+    // if user doesnt have own db document he gets default user name and avatar
     if (docSnap.exists()) {
       setUserData(docSnap.data());
     } else {
       const defaultUserRef = await getDoc(doc(db, "users", "defaultUser"));
-      // console.log(defaultUserRef.data().photoURL);
       const defaultUserInfo = {
         displayName: `user${uuidv4().slice(0, 8)}`,
         photoURL: defaultUserRef.data().photoURL,
         joinedAt: Timestamp.fromDate(new Date()),
       };
-      await setDoc(doc(db, "users", uid), defaultUserInfo, { merge: "true" });
+      await setDoc(doc(db, `users/${uid}`), defaultUserInfo, { merge: "true" });
+      await updateProfile(currentUser, defaultUserInfo);
+      loadUserData();
     }
   }
-  //  const {
-  //     uid,
-  //     displayName,
-  //     photoURL,
-  //   } = currentUser
 
   useEffect(() => {
     loadUserData();
   }, []);
+  useEffect(() => {
+    if (file) {
+      setImageRef(ref(storage, `avatars/${file.name}`));
+    }
+  }, [file]);
 
   return (
     <div className="my-profile-page">
@@ -70,9 +76,9 @@ function EditProfile() {
           Display name:
           <input type="text" name="displayName" id="displayName" defaultValue={displayName} onChange={handleInputChange} />
         </label>
-        <label htmlFor="photoURL">
-          Avatar URL:
-          <input type="text" name="photoURL" id="photoURL" defaultValue={photoURL || "www.example.com/avatar.jpg"} onChange={handleInputChange} />
+        <label htmlFor="avatarImage">
+          Avatar:
+          <input type="file" name="avatarImage" id="avatarImage" accept="image/*" onChange={(event) => { setFile(event.target.files[0]); }} />
         </label>
         <label htmlFor="tweeter">
           Tweeter:
